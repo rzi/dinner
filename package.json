@@ -1,6 +1,6 @@
 {
-  "name": "diner",
-  "version": "0.0.0",
+  "name": "dinner",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -17,6 +17,6 @@
   "description": "order your diner",
   "main": "app.js",
   "devDependencies": {},
-  "author": "",
+  "author": "RZI",
   "license": "ISC"
 }
