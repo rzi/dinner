@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rejestracja</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <br />
+    <form
+      action="/register"
+      method="post"
+      name="Login_Form"
+      class="form-signin"
+    >
+      <h3 class="form-signin-heading">Rejestracja</h3>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        placeholder="imię"
+        required=""
+        autofocus=""
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        placeholder="nazwisko"
+        required=""
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        placeholder="adres email"
+        required=""
+      />
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="hsało"
+        required=""
+      />
+
+      <br /><br />
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        name="Submit"
+        value="Rejestruj!"
+        type="Submit"
+      >
+        Rejestruj!
+      </button>
+      <br /><br />
+      <p id="registerMessage" class="form-message"><%= registerMessage %></p>
+      <br />
+    </form>
+  </body>
+</html>

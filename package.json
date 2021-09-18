@@ -1,22 +1,30 @@
 {
-  "name": "diner",
-  "version": "0.0.0",
+  "name": "dinner",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "^4.16.4",
     "http-errors": "^1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.5.4",
     "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "nodemailer": "^6.6.3",
+    "sequelize": "^6.6.5",
     "serve-favicon": "^2.5.0"
   },
-  "description": "order your diner",
+  "description": "order your dinner",
   "main": "app.js",
   "devDependencies": {},
-  "author": "",
+  "author": "RZI",
   "license": "ISC"
 }
