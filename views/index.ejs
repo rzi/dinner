@@ -2,25 +2,45 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <p>Expressjs uruchomiony</p>
-    <br/>
+    <br />
     <form action="/" method="post" name="Login_Form" class="form-signin">
       <h3 class="form-signin-heading">Logowanie</h3>
 
-      <input type="text" class="form-control" name="email" placeholder="adres email" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="hsało" required=""/>
-      <br/>
-      <label><input type="checkbox"> Zarządzanie resteuracją</label>
-<br/><br/>
-      <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
-      <br/><br/>
-      <label>nie masz konta, <a href="register" >zarejestruj się</a></label>
-<br/>
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        placeholder="adres email"
+        required=""
+        autofocus=""
+      />
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="hsało"
+        required=""
+      />
+      <br />
+      <label><input type="checkbox" /> Zarządzanie resteuracją</label>
+      <br /><br />
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        name="Submit"
+        value="Login"
+        type="Submit"
+      >
+        Login
+      </button>
+      <br /><br />
+      <label>nie masz konta, <a href="register">zarejestruj się</a></label>
+      <br />
     </form>
   </body>
 </html>

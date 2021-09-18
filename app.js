@@ -4,6 +4,7 @@ var favicon = require("serve-favicon");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var mysql = require("mysql");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -11,7 +12,7 @@ var register = require("./routes/register");
 
 var app = express();
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
-console.log("dirname "+ __dirname);
+console.log("dirname " + __dirname);
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -26,6 +27,20 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/register", register);
 
+// var connection = mysql.createConnection({
+//   host: "rzi.ct8.pl",
+//   user: "m12289_Dinner",
+//   password: "Dinner2021",
+//   database: "m12289_Dinner2021",
+// });
+var connection = mysql.createConnection({
+  host: "rzi.ct8.pl",
+  user: "m12289_elunchjs",
+  password: "Elunchjs2020!1",
+  database: "m12289_elunchjs",
+});
+connection.connect();
+global.db = connection;
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -42,4 +57,3 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 app.listen(3000);
-
