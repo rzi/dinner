@@ -6,9 +6,14 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mysql = require("mysql");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var index = require("./routes/index");
+var users = require("./routes/users");
 var register = require("./routes/register");
+var verification = require("./routes/verification");
+var manager = require("./routes/manager");
+var layout = require("./routes/layout");
+var create = require("./routes/create");
+var login = require("./routes/login");
 
 var app = express();
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -19,13 +24,18 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", index);
+app.use("/users", users);
 app.use("/register", register);
+app.use("/verification", verification);
+app.use("/manager", manager);
+app.use("/layout", layout);
+app.use("/create", create);
+app.use("/login", login);
 
 const connection = mysql.createConnection({
   host: "rzi.cba.pl",

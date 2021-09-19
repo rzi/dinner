@@ -1,46 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
   <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <%- include('../views/head.ejs'); %>
+    <title>Dinner</title>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>Expressjs uruchomiony</p>
-    <br />
-    <form action="/" method="post" name="Login_Form" class="form-signin">
-      <h3 class="form-signin-heading">Logowanie</h3>
 
-      <input
-        type="text"
-        class="form-control"
-        name="email"
-        placeholder="adres email"
-        required=""
-        autofocus=""
-      />
-      <input
-        type="password"
-        class="form-control"
-        name="password"
-        placeholder="hsało"
-        required=""
-      />
-      <br />
-      <label><input type="checkbox" /> Zarządzanie resteuracją</label>
-      <br /><br />
-      <button
-        class="btn btn-lg btn-primary btn-block"
-        name="Submit"
-        value="Login"
-        type="Submit"
-      >
-        Login
-      </button>
-      <br /><br />
-      <label>nie masz konta, <a href="register">zarejestruj się</a></label>
-      <br />
-    </form>
+  <body>
+    <%- include('../views/hamburger.ejs'); %>
+    <div class="container">
+      <div>
+        <div class="logo"></div>
+        <div
+          class="item"
+          style="
+            background: rgb(253, 3, 3) url(/public/favicon.ico) no-repeat 0 0;
+          "
+        >
+          Resteuracja królewska
+        </div>
+      </div>
+      <div class="item">Pizza Leone</div>
+      <div class="item">Hotel Viktoria</div>
+      <div class="item">Da graso</div>
+      <div class="item">Resteuracja Łokietek</div>
+      <div class="item">Pizza Corleone</div>
+      <div class="item">Hotel Ilkus</div>
+      <div class="item">Catering Mucha</div>
+      <div class="item">Resteuracja Tramp</div>
+      <div class="item">Resteuracja Opoka</div>
+      <div class="item">Resteuracja RestoGar</div>
+      <div class="item">inne</div>
+    </div>
+    <script src="/public/main.js"></script>
   </body>
 </html>

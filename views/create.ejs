@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rejestracja</title>
+    <title>Dodaj nową resteuracje</title>
     <%- include('../views/head.ejs'); %>
   </head>
   <body>
     <%- include('../views/hamburger.ejs'); %>
+    <h2>Urwórz twoją resteuracje</h2>
     <br />
-    <form
-      action="/register"
-      method="post"
-      name="Login_Form"
-      class="form-signin"
-    >
-      <h3 class="form-signin-heading">Rejestracja</h3>
+    <form action="/create" method="post" name="Login_Form" class="form-signin">
+      <h3 class="form-signin-heading">Dodaj resteuracje</h3>
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        placeholder="nazwa resteuracji"
+        required=""
+        autofocus=""
+      />
       <input
         type="text"
         class="form-control"
         name="firstName"
         placeholder="imię"
         required=""
-        autofocus=""
       />
       <input
         type="text"
@@ -40,7 +43,7 @@
         type="password"
         class="form-control"
         name="password"
-        placeholder="hsało"
+        placeholder="hasło"
         required=""
       />
 
@@ -51,13 +54,10 @@
         value="Rejestruj!"
         type="Submit"
       >
-        Rejestruj!
+        Dodaj
       </button>
       <br /><br />
-      <p id="registerMessage" class="form-message"><%= registerMessage %></p>
-      <br />
-      <br /><br />
-      <label>Chcesz dodać swoją resteuracje? <a href="create">dodaj</a></label>
+      <p id="createMessage" class="form-message"><%= createMessage %></p>
       <br />
     </form>
     <script src="/public/main.js"></script>
