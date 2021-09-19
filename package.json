@@ -25,7 +25,6 @@
   },
   "description": "order your dinner",
   "main": "app.js",
-  "devDependencies": {},
   "author": "RZI",
   "license": "ISC"
 }

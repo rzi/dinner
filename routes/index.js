@@ -17,7 +17,7 @@ router.post("/", function (req, res, next) {
   console.log("manager " + manager);
   console.log("password " + password);
 
-  res.render("login", { title: "Express" });
+  res.render("index", { title: "Express" });
 });
 
 module.exports = router;

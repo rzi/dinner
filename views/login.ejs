@@ -5,7 +5,7 @@
 
 <body>
   <%- include('../views/hamburger.ejs'); %>
-    <form action="/" method="post" name="Login_Form" class="form-signin">
+    <form action="login" method="post" name="Login_Form" class="form-signin">
       <h3 class="form-signin-heading">Logowanie</h3>
 
       <input
@@ -39,6 +39,7 @@
       <br /><br />
       <label>nie masz konta, <a href="register">zarejestruj się</a></label>
       <br />
+      <p id="message" class="form-message" style="color: red;"><%= message %></p>
     </form>
     <script src="/public/main.js"></script>
   </body>
