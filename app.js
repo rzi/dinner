@@ -27,20 +27,23 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/register", register);
 
+const connection = mysql.createConnection({
+  host: "rzi.cba.pl",
+  user: "Bazapi2019",
+  password: "Bazapi2019",
+  database: "elunch_1",
+});
+
+// działa tylko na serwerze ct8.pl
 // var connection = mysql.createConnection({
 //   host: "rzi.ct8.pl",
-//   user: "m12289_Dinner",
-//   password: "Dinner2021",
-//   database: "m12289_Dinner2021",
+//   user: "m12289_elunchjs",
+//   password: "Elunchjs2020!1",
+//   database: "m12289_elunchjs",
 // });
-var connection = mysql.createConnection({
-  host: "rzi.ct8.pl",
-  user: "m12289_elunchjs",
-  password: "Elunchjs2020!1",
-  database: "m12289_elunchjs",
-});
 connection.connect();
 global.db = connection;
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
