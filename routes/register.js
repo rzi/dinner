@@ -15,6 +15,9 @@ process.env.SECRET_KEY = "secret";
 router.get("/", function (req, res, next) {
   console.log("Get: register");
   res.render("register", { registerMessage: "" });
+  console.log("hostname " +req.hostname)
+  console.log("port " +req.port)
+  
 });
 
 /* Post regisster page. */
@@ -76,7 +79,7 @@ router.post("/", function (req, res, next) {
           to: `${email}`,
           subject: "Weryfikacja konta w serwisie dinner.ct8.pl",
           html: `<h1>Cześć, kliknij na link <h1><br><p> Link aktywacyjny.</p>
-                  <br><a href="http://localhost:3000/verification/?verify=${randomValue}&email=${email}">Kliknij aby aktywować twoje konto w serwisie dinner.ct8.pl</a>`,
+                  <br><a href="http://${req.hostname}/verification/?verify=${randomValue}&email=${email}">Kliknij aby aktywować twoje konto w serwisie dinner.ct8.pl</a>`,
         }; // http://localhost:3000/users should be change for external hosting (on production)
         transporter.sendMail(mailOption, function (error, info) {
           if (error) {
