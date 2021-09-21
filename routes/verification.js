@@ -30,9 +30,11 @@ router.get("/", function (req, res, next) {
         if (!result) {
         }
       });
-      res.render("verification", { Message: "OK" });
+      res.render("login", {
+        message: "Twój mail zweryfikowany, zaloguj się!",
+      });
     } else {
-      res.render("verification", { Message: "NOK" });
+      res.render("login", { message: "Błąd wryfikacji email" });
     }
   });
 });
