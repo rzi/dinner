@@ -31,7 +31,7 @@ router.get("/", function (req, res, next) {
         }
       });
       res.render("login", {
-        message: "Twój mail zweryfikowany, zaloguj się!",
+        message: "Twój email zweryfikowany, zaloguj się!",
       });
     } else {
       res.render("login", { message: "Błąd wryfikacji email" });

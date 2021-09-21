@@ -2,10 +2,10 @@ var createError = require("http-errors");
 var express = require("express");
 var favicon = require("serve-favicon");
 var path = require("path");
-var cookieParser = require("cookie-parser");
+var cookieparser = require("cookie-parser");
 var logger = require("morgan");
 var mysql = require("mysql");
-
+var session = require("express-session");
 var index = require("./routes/index");
 var users = require("./routes/users");
 var register = require("./routes/register");
@@ -24,8 +24,16 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000000 },
+  })
+);
+app.use(cookieparser());
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/", index);

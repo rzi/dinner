@@ -5,7 +5,19 @@
     <title>Dinner</title>
   </head>
   <body>
-    <%- include('../views/hamburger.ejs'); %>
+    <div
+      style="
+        color: white;
+        display: flex;
+        justify-content: end;
+        text-align: center;
+      "
+    >
+      <span>Witaj </span>
+      <span> <%- include('../views/hamburger.ejs'); %> </span>
+    </div>
+
+    <div style="color: white; text-align: right"></div>
     <div class="container">
       <div>
         <div class="logo"></div>
