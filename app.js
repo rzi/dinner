@@ -14,6 +14,7 @@ var manager = require("./routes/manager");
 var layout = require("./routes/layout");
 var create = require("./routes/create");
 var login = require("./routes/login");
+var resto = require("./routes/resto");
 
 var app = express();
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -45,6 +46,7 @@ app.use("/manager", manager);
 app.use("/layout", layout);
 app.use("/create", create);
 app.use("/login", login);
+app.use("/resto", resto);
 
 const connection = mysql.createConnection({
   host: "rzi.cba.pl",

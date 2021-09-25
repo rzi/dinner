@@ -19,7 +19,8 @@
 
     <div style="color: white; text-align: right"></div>
     <div class="container">
-      <div>
+      <form name="search-form" id="search-form" action="resto" method="post" class="form-search">
+      <div onClick="document.forms['search-form'].submit();" value =name >
         <div class="logo"></div>
         <div
           class="item"
@@ -30,17 +31,19 @@
           Resteuracja królewska
         </div>
       </div>
-      <div class="item">Pizza Leone</div>
-      <div class="item">Hotel Viktoria</div>
-      <div class="item">Da graso</div>
-      <div class="item">Resteuracja Łokietek</div>
-      <div class="item">Pizza Corleone</div>
-      <div class="item">Hotel Ilkus</div>
-      <div class="item">Catering Mucha</div>
-      <div class="item">Resteuracja Tramp</div>
-      <div class="item">Resteuracja Opoka</div>
-      <div class="item">Resteuracja RestoGar</div>
-      <div class="item">inne</div>
+
+        <button submit ="leone" class="item" onClick="document.forms['search-form'].submit();">Pizza Leone</button>
+        <div class="item">Hotel Viktoria</div>
+        <div class="item">Da graso</div>
+        <div class="item">Resteuracja Łokietek</div>
+        <div class="item">Pizza Corleone</div>
+        <div class="item">Hotel Ilkus</div>
+        <div class="item">Catering Mucha</div>
+        <div class="item">Resteuracja Tramp</div>
+        <div class="item">Resteuracja Opoka</div>
+        <div class="item">Resteuracja RestoGar</div>
+        <div class="item">inne</div>
+    </form>
     </div>
     <script src="/public/main.js"></script>
   </body>
