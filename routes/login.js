@@ -28,7 +28,7 @@ router.post("/", function (req, res, next) {
     console.log("results.length = " + results.length);
     console.log("results.password = " + results[0].password);
     console.log("results.body = " + password);
-    if (results.length) {
+    if (results.length > 0) {
       // check user password with hashed password stored in the database
       const validPassword = bcrypt.compareSync(password, results[0].password);
       if (validPassword) {
