@@ -1,14 +1,18 @@
 var express = require("express");
 var router = express.Router();
+// var cookieParser = require("cookie-parser");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+  console.log("index get cookie: ", req.signedCookies);
+  var name = "";
+  req.signedCookies ? (name = req.signedCookies.name) : (name = "");
+  console.log(`name ${name}`);
+  res.render("index", { title: "Express", name: name });
 });
 
 /* Post home page. */
 router.post("/", function (req, res, next) {
-  //res.render('index', { title: 'Express' });
   console.log("Post : index");
   var email = req.body.email;
   var manager = req.body.manager;

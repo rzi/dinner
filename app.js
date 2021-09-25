@@ -31,9 +31,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60000000 },
+    name: "mySession",
   })
 );
-app.use(cookieparser());
+app.use(cookieparser("secret"));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/", index);

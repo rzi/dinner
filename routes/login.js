@@ -2,17 +2,18 @@ var express = require("express");
 var router = express.Router();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+cookieParser = require("cookie-parser");
+
 router.use(cors());
 /* GET home page. */
 router.get("/", function (req, res, next) {
   console.log("Get: login");
-
+  console.log("cookie: ", req.cookies);
   res.render("login", { message: "" });
 });
 
 /* Post home page. */
 router.post("/", function (req, res, next) {
-  //res.render('index', { title: 'Express' });
   console.log("Post : login");
   var email = req.body.email;
   var manager = req.body.manager;
@@ -32,12 +33,15 @@ router.post("/", function (req, res, next) {
       const validPassword = bcrypt.compareSync(password, results[0].password);
       if (validPassword) {
         console.log("validPassword = " + validPassword);
-        req.session.id = results[0].id;
-        req.session.firstName = results[0].firstName;
-        req.session.lastName = results[0].lastName;
-        req.session.email = results[0].email;
-        req.session.dateCookies = new Date();
-        console.log("req.session.email = " + req.session.email);
+
+        let options = {
+          maxAge: 600000, // would expire after 1 minutes
+          httpOnly: true,
+          signed: true,
+          secret: "secret",
+        };
+        res.cookie("name", results[0].firstName, options);
+
         res.redirect("/");
       } else {
         res.render("login", { message: "Złe hasło" });
