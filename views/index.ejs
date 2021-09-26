@@ -19,31 +19,68 @@
 
     <div style="color: white; text-align: right"></div>
     <div class="container">
-      <form name="search-form" id="search-form" action="resto" method="post" class="form-search">
-      <div onClick="document.forms['search-form'].submit();" value =name >
-        <div class="logo"></div>
-        <div
-          class="item"
-          style="
-            background: rgb(253, 3, 3) url(/public/favicon.ico) no-repeat 0 0;
-          "
-        >
-          Resteuracja królewska
-        </div>
-      </div>
+      <form
+        name="search-form"
+        id="search-form"
+        action="resto"
+        method="post"
+        class="form-search"
+        style="display: flex; flex-wrap: wrap; justify-content: center"
+      >
+        <script>
+          var btn = [];
 
-        <button submit ="leone" class="item" onClick="document.forms['search-form'].submit();">Pizza Leone</button>
-        <div class="item">Hotel Viktoria</div>
-        <div class="item">Da graso</div>
-        <div class="item">Resteuracja Łokietek</div>
-        <div class="item">Pizza Corleone</div>
-        <div class="item">Hotel Ilkus</div>
-        <div class="item">Catering Mucha</div>
-        <div class="item">Resteuracja Tramp</div>
-        <div class="item">Resteuracja Opoka</div>
-        <div class="item">Resteuracja RestoGar</div>
-        <div class="item">inne</div>
-    </form>
+          for (var i = 0; i < 6; i++) {
+            btn[i] = "btn" + i;
+          }
+
+          // Create a form synamically
+          var form = document.createElement("form");
+          form.setAttribute("method", "post");
+          form.setAttribute("action", "/resto");
+          form.style =
+            "display: flex; flex-wrap: wrap; justify-content: center";
+
+          for (var i = 0; i < 6; i++) {
+            btn[i] = document.createElement("BUTTON");
+            btn[i].setAttribute("type", "submit");
+            btn[i].setAttribute("formmethod", "post");
+            btn[i].setAttribute("name", "nowy");
+            btn[i].setAttribute("value", "wartość");
+            btn[i].textContent = "button1";
+            btn[i].textContent.style = "padding: 30px;";
+            btn[i].style.width = "200px";
+            btn[i].style.height = "200px";
+            btn[i].style =
+              "background: rgb(253, 3, 3) url(/public/favicon.ico) no-repeat 0 0; text-align: right;";
+            btn[i].className = "item";
+            form.appendChild(btn[i]);
+            btn[i].onclick = btnClick;
+          }
+
+          function btnClick() {
+            document.forms["search-form"].submit();
+          }
+          //   //document.getElementById("search-form").submit();
+          //   var form = document.getElementById("search-form");
+          //   document
+          //     .getElementById("idButton")
+          //     .addEventListener("click", function () {
+          //       form.submit();
+          //     });
+          //   alert(" click");
+          // }
+
+          // Append the full name input to the form
+
+          // document.body.appendChild(x);
+          document.getElementsByTagName("body")[0].appendChild(form);
+
+          function btnClick() {
+            document.forms["search-form"].submit();
+          }
+        </script>
+      </form>
     </div>
     <script src="/public/main.js"></script>
   </body>
