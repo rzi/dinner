@@ -16,7 +16,66 @@
       <p>Witaj <%= name %></p>
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
+    <h2 style="color: white; text-align: center">
+      Menu resteuracji <%= restoName%>
+    </h2>
+    <form action="order" method="post">
+      <button style="margin: auto; display: block" type="submit">
+        Do koszyka
+      </button>
+      <br />
+      <table
+        style="
+          color: white;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <th style="border: solid white 1px"></th>
+        <th style="border: solid white 1px">danie</th>
+        <th style="border: solid white 1px">cena</th>
+        <th style="border: solid white 1px">prezentacja</th>
+        <% for(var i=0; i < menu.length; i++) { %>
+        <tr>
+          <td style="width: 50px; text-align: center; border: solid white 1px">
+            <input type="checkbox" name="<%=i%>" onclick="checkboxValidation(name)"/>&nbsp;
+          </td>
+          <td style="border: solid white 1px">
+            <input type="hidden" value="<%= menu[i].dish %>" name="dish<%=i%>" ><%= menu[i].dish %> </input>
+          </td>
+          <td style="border: solid white 1px"><input type="hidden" value="<%= menu[i].price %>" name="price<%=i%> "><%= menu[i].price %></td>
+          <td style="border: solid white 1px">
+            <img
+              src="/public/fotoDinner/obiad<%=i+1%>.jpg"
+              height="100"
+              width="100"
+            />
+          </td>
+        </tr>
+
+        <% } %>
+      </table>
+    </form>
 
     <script src="/public/main.js"></script>
+    <script>
+    function checkboxValidation(name) {
+     var checkboxes = document.getElementsByTagName("checkbox");  
+     var input1 = document.getElementsByTagName("input");  
+     var numberOfCheckedItems = 0;  
+    for(var i = 0; i < checkboxes.length; i++){   
+      var name = input1[i].getAttribute("name");
+      console.log( `name:  ${name}`);
+          if(checkboxes.checked)  {
+              numberOfCheckedItems++; 
+              input1[i].diasebled =true;
+          } 
+      }  
+      alert(numberOfCheckedItems);
+  
+    }  
+    </script>
   </body>
 </html>

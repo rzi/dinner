@@ -9,12 +9,15 @@ router.get("/", function (req, res, next) {
   req.signedCookies ? (name = req.signedCookies.name) : (name = "");
   console.log(`name ${name}`);
 
-  res.render("index", { title: "Express", name: name });
+  res.render("order", { title: "Express", name: name });
 });
 
 /* Post home page. */
 router.post("/", function (req, res, next) {
   console.log("Post : index");
+  var name = "";
+  req.signedCookies ? (name = req.signedCookies.name) : (name = "");
+
   var email = req.body.email;
   var manager = req.body.manager;
   var password = req.body.password;
@@ -22,7 +25,7 @@ router.post("/", function (req, res, next) {
   console.log("manager " + manager);
   console.log("password " + password);
 
-  res.render("index", { title: "Express" });
+  res.render("order", { title: "Express", name: name });
 });
 
 module.exports = router;

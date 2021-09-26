@@ -9,6 +9,7 @@ router.use(cors());
 router.get("/", function (req, res, next) {
   console.log("Get: login");
   console.log("cookie: ", req.cookies);
+
   res.render("login", { message: "" });
 });
 

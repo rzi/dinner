@@ -15,6 +15,8 @@ var layout = require("./routes/layout");
 var create = require("./routes/create");
 var login = require("./routes/login");
 var resto = require("./routes/resto");
+var getname = require("./routes/getname");
+var order = require("./routes/order");
 
 var app = express();
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -47,6 +49,8 @@ app.use("/layout", layout);
 app.use("/create", create);
 app.use("/login", login);
 app.use("/resto", resto);
+app.use("/getname", getname);
+app.use("/order", order);
 
 const connection = mysql.createConnection({
   host: "rzi.cba.pl",

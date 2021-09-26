@@ -28,60 +28,59 @@
         style="display: flex; flex-wrap: wrap; justify-content: center"
       >
         <script>
-          var btn = [];
+          fetch("getname", {
+            method: "get",
+            headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              var btn = [];
+              for (let i = 0; i < res.length; i++) {
+                console.log(res[i].name);
+                btn[i] = "btn" + i;
+              }
 
-          for (var i = 0; i < 6; i++) {
-            btn[i] = "btn" + i;
-          }
+              // Create a form synamically
+              var form = document.createElement("form");
+              form.setAttribute("method", "post");
+              form.setAttribute("action", "/resto");
+              form.style =
+                "display: flex; flex-wrap: wrap; justify-content: center";
 
-          // Create a form synamically
-          var form = document.createElement("form");
-          form.setAttribute("method", "post");
-          form.setAttribute("action", "/resto");
-          form.style =
-            "display: flex; flex-wrap: wrap; justify-content: center";
+              for (let i = 0; i < res.length; i++) {
+                btn[i] = document.createElement("BUTTON");
+                btn[i].setAttribute("type", "submit");
+                btn[i].setAttribute("formmethod", "post");
+                btn[i].setAttribute("name", "restoName");
+                btn[i].setAttribute("value", res[i].name);
+                btn[i].textContent = res[i].name;
+                btn[i].textContent.style = "padding: 30px;";
+                btn[i].style.width = "200px";
+                btn[i].style.height = "200px";
+                btn[i].style =
+                  "background: rgb(253, 3, 3) url(/public/favicon.ico) no-repeat 0 0; text-align: right;";
+                btn[i].className = "item";
+                form.appendChild(btn[i]);
+                btn[i].onclick = btnClick;
+              }
 
-          for (var i = 0; i < 6; i++) {
-            btn[i] = document.createElement("BUTTON");
-            btn[i].setAttribute("type", "submit");
-            btn[i].setAttribute("formmethod", "post");
-            btn[i].setAttribute("name", "nowy");
-            btn[i].setAttribute("value", "wartość");
-            btn[i].textContent = "button1";
-            btn[i].textContent.style = "padding: 30px;";
-            btn[i].style.width = "200px";
-            btn[i].style.height = "200px";
-            btn[i].style =
-              "background: rgb(253, 3, 3) url(/public/favicon.ico) no-repeat 0 0; text-align: right;";
-            btn[i].className = "item";
-            form.appendChild(btn[i]);
-            btn[i].onclick = btnClick;
-          }
+              function btnClick() {
+                document.forms["search-form"].submit();
+              }
+              document.getElementsByTagName("body")[0].appendChild(form);
 
-          function btnClick() {
-            document.forms["search-form"].submit();
-          }
-          //   //document.getElementById("search-form").submit();
-          //   var form = document.getElementById("search-form");
-          //   document
-          //     .getElementById("idButton")
-          //     .addEventListener("click", function () {
-          //       form.submit();
-          //     });
-          //   alert(" click");
-          // }
-
-          // Append the full name input to the form
-
-          // document.body.appendChild(x);
-          document.getElementsByTagName("body")[0].appendChild(form);
-
-          function btnClick() {
-            document.forms["search-form"].submit();
-          }
+              function btnClick() {
+                document.forms["search-form"].submit();
+              }
+            });
         </script>
       </form>
     </div>
     <script src="/public/main.js"></script>
+    <script></script>
   </body>
 </html>

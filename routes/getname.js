@@ -9,7 +9,16 @@ router.get("/", function (req, res, next) {
   req.signedCookies ? (name = req.signedCookies.name) : (name = "");
   console.log(`name ${name}`);
 
-  res.render("index", { title: "Express", name: name });
+  var sql = "SELECT name FROM `resto` WHERE 1";
+  console.log("sql: " + sql);
+  db.query(sql, function async(err, results) {
+    if (err) throw err;
+    console.log(`results ${JSON.stringify(results)}`);
+    res.json(results);
+    //res.end();
+  });
+
+  //res.render("index", { title: "Express", name: name });
 });
 
 /* Post home page. */
