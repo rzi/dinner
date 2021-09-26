@@ -40,7 +40,7 @@
         <% for(var i=0; i < menu.length; i++) { %>
         <tr>
           <td style="width: 50px; text-align: center; border: solid white 1px">
-            <input type="checkbox" name="<%=i%>" onclick="checkboxValidation(name)"/>&nbsp;
+            <input type="checkbox" name="orderCheckbox" onclick="checkboxValidation()" />
           </td>
           <td style="border: solid white 1px">
             <input type="hidden" value="<%= menu[i].dish %>" name="dish<%=i%>" ><%= menu[i].dish %> </input>
@@ -61,19 +61,33 @@
 
     <script src="/public/main.js"></script>
     <script>
-    function checkboxValidation(name) {
-     var checkboxes = document.getElementsByTagName("checkbox");  
-     var input1 = document.getElementsByTagName("input");  
-     var numberOfCheckedItems = 0;  
-    for(var i = 0; i < checkboxes.length; i++){   
-      var name = input1[i].getAttribute("name");
-      console.log( `name:  ${name}`);
-          if(checkboxes.checked)  {
-              numberOfCheckedItems++; 
-              input1[i].diasebled =true;
-          } 
-      }  
-      alert(numberOfCheckedItems);
+    function checkboxValidation() {
+        var menuCheckbox = document.forms[0];
+        for(var i = 0; i < menuCheckbox.length; i++){ 
+            if (menuCheckbox[i].checked) {
+                alert ("checked: " + menuCheckbox[i].name+" "+i); 
+            }else{
+                alert ("unchecked: " + menuCheckbox[i].name+" "+i) ; 
+            }
+        }
+
+    //  var checkboxes = document.getElementsByTagName("checkbox");  
+    //  var input1 = document.getElementsByTagName("input");  
+    //  var numberOfCheckedItems = 0;  
+    //  alert("checkboxes: " +checkboxes.length );
+    // for(var i = 0; i < checkboxes.length; i++){  
+    //     alert (" for"); 
+    //   var name = input1[i].getAttribute("name");
+    //   alert( "name "+ name);
+    //       if(checkboxes.checked)  {
+    //           numberOfCheckedItems++; 
+    //         //   input1[i].diasebled =true;
+    //       } else{
+    //         input1[i].setAttribute("checked").checked="false";
+    //         alert(input1[i].getAttribute('checked'));
+    //       }
+    //   }  
+    //   alert("numberOfCheckedItems "+numberOfCheckedItems);
   
     }  
     </script>
