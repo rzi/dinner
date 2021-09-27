@@ -62,14 +62,25 @@
     <script src="/public/main.js"></script>
     <script>
     function checkboxValidation() {
-        var menuCheckbox = document.forms[0];
-        for(var i = 0; i < menuCheckbox.length; i++){ 
-            if (menuCheckbox[i].checked) {
-                alert ("checked: " + menuCheckbox[i].name+" "+i); 
-            }else{
-                alert ("unchecked: " + menuCheckbox[i].name+" "+i) ; 
-            }
-        }
+      var trs = document.querySelectorAll("tr");
+for (var i = 0; i < trs.length; i++)
+  (function (e) {
+    trs[e].addEventListener("click", function () {
+      console.log({
+        "FirstName": this.querySelectorAll("*")[0].innerHTML.trim(),
+        "LastName": this.querySelectorAll("*")[1].innerHTML.trim(),
+        "Age": this.querySelectorAll("*")[2].innerHTML.trim()
+      });
+    }, false);
+  })(i);
+        // var menuCheckbox = document.forms[0];
+        // for(var i = 0; i < menuCheckbox.length; i++){ 
+        //     if (menuCheckbox[i].checked) {
+        //         alert ("checked: " + menuCheckbox[i].name+" "+i); 
+        //     }else{
+        //         alert ("unchecked: " + menuCheckbox[i].name+" "+i) ; 
+        //     }
+        // }
 
     //  var checkboxes = document.getElementsByTagName("checkbox");  
     //  var input1 = document.getElementsByTagName("input");  
