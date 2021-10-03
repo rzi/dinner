@@ -16,13 +16,10 @@
       <p>Witaj <%= name %></p>
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
-    <h2 style="color: white; text-align: center">
+    <h2 id="restoName2" style="color: white; text-align: center">
       Menu resteuracji <%= restoName%>
     </h2>
-    <form action="order" method="post">
-      <button style="margin: auto; display: block" type="submit">
-        Do koszyka
-      </button>
+    <input style="margin: auto; display: block" type="button" value="Do koszyka" onclick="btnSend()" />
       <br />
       <table
         style="
@@ -32,6 +29,7 @@
           justify-content: center;
           align-items: center;
         "
+        id="Table1"
       >
         <th style="border: solid white 1px"></th>
         <th style="border: solid white 1px">danie</th>
@@ -40,12 +38,12 @@
         <% for(var i=0; i < menu.length; i++) { %>
         <tr>
           <td style="width: 50px; text-align: center; border: solid white 1px">
-            <input type="checkbox" name="orderCheckbox" onclick="checkboxValidation()" />
+            <input type="checkbox"/>
           </td>
           <td style="border: solid white 1px">
-            <input type="hidden" value="<%= menu[i].dish %>" name="dish<%=i%>" ><%= menu[i].dish %> </input>
+            <input type="hidden" ><%= menu[i].dish %> </input>
           </td>
-          <td style="border: solid white 1px"><input type="hidden" value="<%= menu[i].price %>" name="price<%=i%> "><%= menu[i].price %></td>
+          <td style="border: solid white 1px"><input type="hidden" ><%= menu[i].price %></td>
           <td style="border: solid white 1px">
             <img
               src="/public/fotoDinner/obiad<%=i+1%>.jpg"
@@ -60,47 +58,54 @@
     </form>
 
     <script src="/public/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-    function checkboxValidation() {
-      var trs = document.querySelectorAll("tr");
-for (var i = 0; i < trs.length; i++)
-  (function (e) {
-    trs[e].addEventListener("click", function () {
-      console.log({
-        "FirstName": this.querySelectorAll("*")[0].innerHTML.trim(),
-        "LastName": this.querySelectorAll("*")[1].innerHTML.trim(),
-        "Age": this.querySelectorAll("*")[2].innerHTML.trim()
-      });
-    }, false);
-  })(i);
-        // var menuCheckbox = document.forms[0];
-        // for(var i = 0; i < menuCheckbox.length; i++){ 
-        //     if (menuCheckbox[i].checked) {
-        //         alert ("checked: " + menuCheckbox[i].name+" "+i); 
-        //     }else{
-        //         alert ("unchecked: " + menuCheckbox[i].name+" "+i) ; 
-        //     }
-        // }
+ 
+    function btnSend(){
+      //Reference the Table.
+      var grid = document.getElementById("Table1"); 
+      //Reference the CheckBoxes in Table.
+      var checkBoxes = grid.getElementsByTagName("INPUT");
+      var order =[];
+      var resto = [];
+      console.log( "btn");
+      var restoName = document.getElementById("restoName2").value;
+      console.log(`restoName ${restoName}`);
+      resto.push(restoName);
 
-    //  var checkboxes = document.getElementsByTagName("checkbox");  
-    //  var input1 = document.getElementsByTagName("input");  
-    //  var numberOfCheckedItems = 0;  
-    //  alert("checkboxes: " +checkboxes.length );
-    // for(var i = 0; i < checkboxes.length; i++){  
-    //     alert (" for"); 
-    //   var name = input1[i].getAttribute("name");
-    //   alert( "name "+ name);
-    //       if(checkboxes.checked)  {
-    //           numberOfCheckedItems++; 
-    //         //   input1[i].diasebled =true;
-    //       } else{
-    //         input1[i].setAttribute("checked").checked="false";
-    //         alert(input1[i].getAttribute('checked'));
-    //       }
-    //   }  
-    //   alert("numberOfCheckedItems "+numberOfCheckedItems);
-  
-    }  
+      //Loop through the CheckBoxes.
+      for (var i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].checked) {
+          var row = checkBoxes[i].parentNode.parentNode;
+
+          tmp = {
+          'dish': row.cells[1].innerText,
+          'price': row.cells[2].innerText
+            };
+        order.push([tmp]);
+        }
+      }
+      var string = JSON.stringify(order);
+      //alert(string);
+
+      //const json = JSON.stringify({ answer: 42 });
+      const res = axios.post('order', string, {
+      headers: {
+        // Overwrite Axios's automatically set Content-Type
+        'Content-Type': 'application/json'
+      }
+      
+      }).then(function (response) {
+    // console.log(response.data);
+    console.log(response.status);
+    // console.log(response.statusText);
+    // console.log(response.headers);
+    // console.log(response.config);
+   // if (response.status  == 200) window.location.replace("/order"); // redirect;
+  });
+     
+
+    }
     </script>
   </body>
 </html>
