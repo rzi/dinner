@@ -16,8 +16,8 @@
       <p>Witaj <%= name %></p>
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
-    <h2 id="restoName2" style="color: white; text-align: center">
-      Menu resteuracji <%= restoName%>
+    <h2 style="color: white; text-align: center">
+      Menu resteuracji <span id="restoName2"><%=restoName%></span>
     </h2>
     <input style="margin: auto; display: block" type="button" value="Do koszyka" onclick="btnSend()" />
       <br />
@@ -69,8 +69,8 @@
       var order =[];
       var resto = [];
       console.log( "btn");
-      var restoName = document.getElementById("restoName2").value;
-      console.log(`restoName ${restoName}`);
+      var restoName = document.getElementById("restoName2").innerHTML;
+      console.log(`restoName: ${restoName}`);
       resto.push(restoName);
 
       //Loop through the CheckBoxes.
@@ -82,7 +82,7 @@
           'dish': row.cells[1].innerText,
           'price': row.cells[2].innerText
             };
-        order.push([tmp]);
+        order.push(restoName,[tmp]);
         }
       }
       var string = JSON.stringify(order);
@@ -101,7 +101,7 @@
     // console.log(response.statusText);
     // console.log(response.headers);
     // console.log(response.config);
-   // if (response.status  == 200) window.location.replace("/order"); // redirect;
+    if (response.status  == 200) window.location.replace("/order"); // redirect;
   });
      
 

@@ -24,7 +24,7 @@ router.post("/", function (req, res, next) {
   console.log("email " + email);
   console.log("manager " + manager);
   console.log("password " + password);
-  console.log(req.body); 
+  console.log(`req.body ${JSON.stringify(req.body)}`); 
 
   res.render("order", { title: "Express", name: name });
 });
