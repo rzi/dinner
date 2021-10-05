@@ -79,10 +79,11 @@
           var row = checkBoxes[i].parentNode.parentNode;
 
           tmp = {
+          'restoName': restoName,  
           'dish': row.cells[1].innerText,
           'price': row.cells[2].innerText
             };
-        order.push(restoName,[tmp]);
+        order.push(tmp);
         }
       }
       var string = JSON.stringify(order);
@@ -101,9 +102,9 @@
     // console.log(response.statusText);
     // console.log(response.headers);
     // console.log(response.config);
-    if (response.status  == 200) window.location.replace("/order"); // redirect;
+     if (response.status  == 200) window.location.replace("/order"); // redirect;
   });
-     
+      
 
     }
     </script>
