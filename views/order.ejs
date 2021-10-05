@@ -23,11 +23,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  "><th style="border: solid white 1px"> header</th>
+  "><th style="border: solid white 1px"> danier</th>
+  <% for(var i=0; i < 5; i++) { %>
   <tr>
-    <td style="width: 50px; text-align: center; border: solid white 1px"> <%=title1%></td>
+    <td style="width: 50px; text-align: center; border: solid white 1px"> <%=[i]%></td>
   </tr>
-
+  <% } %>
     </table>
     <script src="/public/main.js"></script>
   </body>

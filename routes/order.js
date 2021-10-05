@@ -9,7 +9,7 @@ router.get("/", function (req, res, next) {
   req.signedCookies ? (name = req.signedCookies.name) : (name = "");
   console.log(`name ${name}`);
 
-  res.render("order", { title: "Express", name: name , title1: "2"});
+  res.render("order", { title: "Express", name: name , title1: req.body});
 });
 
 /* Post home page. */
