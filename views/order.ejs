@@ -14,22 +14,30 @@
       "
     >
       <p>Witaj <%= name %></p>
+
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
     <h2 style="color: white; text-align: center">Twoje zamówienie</h2>
-    <table style="
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  "><th style="border: solid white 1px"> danier</th>
-  <% for(var i=0; i < 5; i++) { %>
-  <tr>
-    <td style="width: 50px; text-align: center; border: solid white 1px"> <%=[i]%></td>
-  </tr>
-  <% } %>
+    <table
+      style="
+        color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <th style="border: solid white 1px">danier</th>
+      <% for(var i=0; i < 5; i++) { %>
+      <tr>
+        <td style="width: 50px; text-align: center; border: solid white 1px">
+          <%=title1[i]%>
+        </td>
+      </tr>
+      <% } %>
     </table>
+
+    <p style="color: white"><%- JSON.stringify(title1) %></p>
     <script src="/public/main.js"></script>
   </body>
 </html>
