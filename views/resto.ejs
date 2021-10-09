@@ -78,16 +78,17 @@
         if (checkBoxes[i].checked) {
           var row = checkBoxes[i].parentNode.parentNode;
 
-          tmp = {
-          'restoName': restoName,  
-          'dish': row.cells[1].innerText,
-          'price': row.cells[2].innerText
-            };
+          tmp = [
+          restoName,  
+          row.cells[1].innerText,
+          row.cells[2].innerText
+        ];
         order.push(tmp);
         }
       }
+      console.log(`order ${order[0][0]}`)
       var string = JSON.stringify(order);
-      //alert(string);
+      console.log(`order ${string}`)
 
       //const json = JSON.stringify({ answer: 42 });
       const res = axios.post('order', string, {

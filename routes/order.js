@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var cookieParser = require("cookie-parser");
 bodyParser = require("body-parser");
-
+var preOrder;
 /* GET home page. */
 router.get("/", function (req, res, next) {
   console.log("order get cookie: ", req.signedCookies);
@@ -11,7 +11,12 @@ router.get("/", function (req, res, next) {
   console.log(`name ${name}`);
   console.log(`req.body ${JSON.stringify(req.body)}`);
   console.log("cookie: ", req.cookies);
-  res.render("order", { title: "Express", name: name, title1: req.body });
+  res.render("order", {
+    title: "Express",
+    name: name,
+    title1: req.body,
+    preOrder: preOrder,
+  });
 });
 
 /* Post home page. */
@@ -27,24 +32,20 @@ router.post("/", function (req, res, next) {
   console.log("manager " + manager);
   console.log("password " + password);
   console.log(`req.body ${JSON.stringify(req.body)}`);
-  var menu = JSON.stringify(req.body);
   var menu2 = req.body;
-
-  console.log(`req.body lenght ${menu2.length}`);
-  // console.log(`req.body parse ${menu2[0]}`);
-  // console.log(`req.body parse ${JSON.stringify( menu2[1])}`);
-  // console.log(`req.body parse ${JSON.stringify(menu2[1][0][0])}`);
-
-  let options = {
-    maxAge: 600000, // would expire after 1 minutes
-    httpOnly: true,
-    signed: true,
-    secret: "secret",
-  };
-  res.cookie("preOrder", res.body, options);
-  for (i = 0; i < menu2.length; i++) {
-    console.log(`req.body ${JSON.stringify(menu2[i].price)}`);
+  preOrder = req.body;
+  for (i = 0; i < req.body.length; i++) {
+    console.log(`req.body ${menu2[i]}`);
+    console.log(`preOrder ${menu2[i][0]}`);
+    console.log(`preOrder ${menu2[i][1]}`);
+    console.log(`preOrder ${menu2[i][2]}`);
   }
-  res.send(req.body);
+  console.log(`preOrder ${preOrder}`);
+  res.render("order", {
+    title: "Express",
+    name: name,
+    title1: req.body,
+    preOrder: preOrder,
+  });
 });
 module.exports = router;

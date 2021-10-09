@@ -14,30 +14,81 @@
       "
     >
       <p>Witaj <%= name %></p>
-
+      <% var suma=0;%>
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
-    <h2 style="color: white; text-align: center">Twoje zamówienie</h2>
-    <table
-      style="
-        color: white;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <th style="border: solid white 1px">danier</th>
-      <% for(var i=0; i < 5; i++) { %>
-      <tr>
-        <td style="width: 50px; text-align: center; border: solid white 1px">
-          <%=title1[i]%>
-        </td>
-      </tr>
-      <% } %>
-    </table>
+    <div>
+      <h2 style="color: white; text-align: center">Twoje zamówienie</h2>
+      <table
+        style="
+          color: white;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <th style="border: solid white 1px">Nazwa resteuracji</th>
+        <th style="border: solid white 1px">danie</th>
+        <th style="border: solid white 1px">cena [zł]</th>
+        <% for(var i=0; i < preOrder.length; i++) { %>
+        <tr>
+          <td style="text-align: center; border: solid white 1px">
+            <%=preOrder[i][0]%>
+          </td>
+          <td style="text-align: center; border: solid white 1px">
+            <%=preOrder[i][1]%>
+          </td>
+          <td style="text-align: center; border: solid white 1px">
+            <%=preOrder[i][2]%>
+          </td>
+        </tr>
+        <% suma = suma + parseInt(preOrder[i][2])%> <% } %>
+        <td></td>
+        <td>suma</td>
+        <td><%=suma %></td>
+        <tr>
+          <td style="text-align: left">
+            <input
+              style="color: white"
+              type="radio"
+              name="delivery"
+              id="2"
+              value="zjem w lokalu"
+            />
+            <label style="color: white" for="zjem w lokalu"
+              >zjem w lokalu</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left">
+            <input
+              style="color: white"
+              type="radio"
+              name="delivery"
+              id="1"
+              value="dostawa"
+            />
+            <label style="color: white" for="dostawa">dostawa</label>
+          </td>
+        </tr>
+      </table>
+      <br />
 
-    <p style="color: white"><%- JSON.stringify(title1) %></p>
+      <br />
+
+      <br />
+
+      <br />
+      <br />
+
+      <br />
+      <!-- <p style="color: white"><%= preOrder[0] %></p> -->
+    </div>
+    <div style="display: flex">
+      <button style="justify-content: center">zamów</button>
+    </div>
     <script src="/public/main.js"></script>
   </body>
 </html>
