@@ -17,7 +17,18 @@
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
 
-    <div style="color: white; text-align: right"></div>
+    <div
+      style="
+        color: white;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      "
+    >
+      Wyszukaj resteuracje w:
+      <input type="search" name="city" id="city" style="margin-left: 10px" />
+    </div>
     <div class="container">
       <form
         name="search-form"

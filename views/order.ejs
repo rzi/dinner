@@ -13,12 +13,14 @@
         text-align: center;
       "
     >
-      <p>Witaj <%= name %></p>
+      <p>Witaj <span id="name"><%= name %></span></p>
       <% var suma=0;%>
       <span> <%- include('../views/hamburger.ejs'); %> </span>
     </div>
     <div>
-      <h2 style="color: white; text-align: center">Twoje zamówienie</h2>
+      <h2 style="color: white; text-align: center">
+        Twoje zamówienie <span id="restoName"><%= preOrder.restoName %></span>
+      </h2>
       <table
         style="
           color: white;
@@ -27,72 +29,131 @@
           justify-content: center;
           align-items: center;
         "
+        id="order"
       >
-        <th style="border: solid white 1px">Nazwa resteuracji</th>
+        <!-- <th style="border: solid white 1px">Nazwa resteuracji</th> -->
         <th style="border: solid white 1px">danie</th>
         <th style="border: solid white 1px">cena [zł]</th>
-        <% for(var i=0; i < preOrder.length; i++) { %>
+        <% count = preOrder.dishOrder.length; for(var i=0; i < count; i++) { %>
         <tr>
           <td style="text-align: center; border: solid white 1px">
-            <%=preOrder[i][0]%>
+            <%=preOrder.dishOrder[i][0]%>
           </td>
           <td style="text-align: center; border: solid white 1px">
-            <%=preOrder[i][1]%>
-          </td>
-          <td style="text-align: center; border: solid white 1px">
-            <%=preOrder[i][2]%>
+            <%=preOrder.dishOrder[i][1]%>
           </td>
         </tr>
-        <% suma = suma + parseInt(preOrder[i][2])%> <% } %>
-        <td></td>
+        <% suma = suma + parseInt(preOrder.dishOrder[i][1])%> <% } %>
+
         <td>suma</td>
         <td><%=suma %></td>
-        <tr>
-          <td style="text-align: left">
-            <input
-              style="color: white"
-              type="radio"
-              name="delivery"
-              id="2"
-              value="zjem w lokalu"
-            />
-            <label style="color: white" for="zjem w lokalu"
-              >zjem w lokalu</label
-            >
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left">
-            <input
-              style="color: white"
-              type="radio"
-              name="delivery"
-              id="1"
-              value="dostawa"
-            />
-            <label style="color: white" for="dostawa">dostawa</label>
-          </td>
-        </tr>
       </table>
       <br />
 
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div>
+          <input
+            style="color: white"
+            type="radio"
+            name="delivery"
+            id="1"
+            value="1"
+          />
+          <label style="color: white" for="zjem w lokalu" id="eatOnPlaceLabel"
+            >zjem w lokalu</label
+          >
+          <br />
+          <input
+            type="text"
+            id="eatOnPlaceEdit"
+            placeholder="info dla lokalu np: będę o 15..."
+            style="width: 200px"
+          />
+          <br /><br />
+          <input
+            style="color: white"
+            type="radio"
+            name="delivery"
+            id="2"
+            value="2"
+          />
+          <label style="color: white" for="dostawa" id="deliveryLabel"
+            >dostawa</label
+          >
+          <br />
+          <input
+            type="text"
+            id="deliveryEdit"
+            placeholder="adres dostawy ..."
+            style="width: 200px"
+          />
+        </div>
+      </div>
       <br />
-
-      <br />
-
-      <br />
-      <br />
-
-      <br />
-      <!-- <p style="color: white"><%= preOrder[0] %></p> -->
     </div>
     <div style="display: flex">
-      <input style="margin: auto; display: block" type="button" value="Zamów" onclick="btnOrder()" />
+      <input
+        style="margin: auto; display: block"
+        type="button"
+        value="Zamów"
+        onclick="btnOrder()"
+      />
     </div>
     <script src="/public/main.js"></script>
     <script>
-      function btnOrder(){
-        alert( "zamówienie");
+      // order & pay
+      var orderToPay = new Object();
+
+      document.addEventListener("input", (e) => {
+        if (e.target.getAttribute("name") == "delivery")
+          if (e.target.value == "1") {
+            document.getElementById("2").style.display = "none";
+            document.getElementById("deliveryLabel").style.display = "none";
+            document.getElementById("deliveryEdit").style.display = "none";
+          } else {
+            document.getElementById("1").style.display = "none";
+            document.getElementById("eatOnPlaceLabel").style.display = "none";
+            document.getElementById("eatOnPlaceEdit").style.display = "none";
+          }
+      });
+
+      function btnOrder() {
+        var myOrder = [];
+        if (
+          document.getElementById("1").checked ||
+          document.getElementById("2").checked
+        ) {
+          if (
+            document.getElementById("deliveryEdit").value == "" &&
+            document.getElementById("2").checked
+          ) {
+            alert("dodaj adres dostawy");
+            return;
+          }
+
+          const cells = document.querySelectorAll("td");
+          orderToPay.restoName = document.getElementById("restoName").innerText;
+          console.log(` orderToPay ${JSON.stringify(orderToPay)}`);
+          cells.forEach(function (cell) {
+            myOrder.push(cell.innerText);
+          });
+
+          if (document.getElementById("1").checked)
+            myOrder.push(document.getElementById("eatOnPlaceEdit").value);
+          if (document.getElementById("2").checked)
+            myOrder.push(document.getElementById("deliveryEdit").value);
+        } else {
+          alert("wybierz formę dostarczenia");
+        }
+        console.log(`myOrder ${myOrder}`);
+        orderToPay.order = myOrder;
+        console.log(` orderToPay ${JSON.stringify(orderToPay)}`);
+        alert(`Zamówiono ${JSON.stringify(orderToPay)}`);
+
+        if (document.getElementById("name").innerHTML == "") {
+          alert("musisz się zalogować");
+          window.location.replace("/login"); // redirect;
+        }
       }
     </script>
   </body>

@@ -32,13 +32,16 @@ router.post("/", function (req, res, next) {
   console.log("manager " + manager);
   console.log("password " + password);
   console.log(`req.body ${JSON.stringify(req.body)}`);
-  var menu2 = req.body;
   preOrder = req.body;
-  for (i = 0; i < req.body.length; i++) {
-    console.log(`req.body ${menu2[i]}`);
-    console.log(`preOrder ${menu2[i][0]}`);
-    console.log(`preOrder ${menu2[i][1]}`);
-    console.log(`preOrder ${menu2[i][2]}`);
+  console.log(
+    `reOrder.dishOrder.lenght ${Object.keys(preOrder.dishOrder).length}`
+  );
+  console.log(`preOrder.restoName ${preOrder.restoName}`);
+  for (i = 0; i < Object.keys(preOrder.dishOrder).length; i++) {
+    console.log(`RestoName1 ${JSON.stringify(preOrder.dishOrder)}`);
+    // console.log(`preOrder ${menu2[i][0]}`);
+    // console.log(`preOrder ${menu2[i][1]}`);
+    // console.log(`preOrder ${menu2[i][2]}`);
   }
   console.log(`preOrder ${preOrder}`);
   res.render("order", {

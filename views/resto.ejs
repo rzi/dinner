@@ -64,31 +64,51 @@
     function btnSend(){
       //Reference the Table.
       var grid = document.getElementById("Table1"); 
-      //Reference the CheckBoxes in Table.
+
       var checkBoxes = grid.getElementsByTagName("INPUT");
       var order =[];
-      var resto = [];
-      console.log( "btn");
-      var restoName = document.getElementById("restoName2").innerHTML;
-      console.log(`restoName: ${restoName}`);
-      resto.push(restoName);
+      var order2 = new Object();
+      var tmp2 = new Object();
+     var tmp3;
 
+      var restoName = document.getElementById("restoName2").innerHTML;
+      order2.restoName = restoName;
+      var isChecked ;
       //Loop through the CheckBoxes.
       for (var i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked) {
           var row = checkBoxes[i].parentNode.parentNode;
-
-          tmp = [
-          restoName,  
+          var tmp = [
           row.cells[1].innerText,
           row.cells[2].innerText
-        ];
-        order.push(tmp);
-        }
+          ];
+          order.push(tmp);
+
+          // var tmp2 = {
+          //   "dish": row.cells[1].innerText,
+          //   "price" :row.cells[2].innerText
+          // }
+          // tmp3= tmp3 + tmp2;
+          // order2[i] = tmp2;
+
+        // var tmp3= i ;
+        // var tmp4= i ;
+        // // var tmp4 = `${row.cells[1].innerText}, ${row.cells[2].innerText}`;
+        // // tmp2 = tmp;
+        // order2 = {...order2 , dishOrder: { i: row.cells[1].innerText, tmp4 : row.cells[2].innerText}};
+        isChecked = true;
+        } 
+
       }
-      console.log(`order ${order[0][0]}`)
-      var string = JSON.stringify(order);
-      console.log(`order ${string}`)
+      order2.dishOrder = order;
+      console.log(` order2 ${JSON.stringify(order2)}`);
+       if (!isChecked) {
+          alert("Zaznacz wybraną potrawę");
+          return;
+        }
+      //console.log(`order ${order[0][0]}`)
+      var string = JSON.stringify(order2);
+      // console.log(`order ${string}`)
 
       //const json = JSON.stringify({ answer: 42 });
       const res = axios.post('order', string, {
@@ -98,13 +118,13 @@
       }
       
       }).then(function (response) {
-    // console.log(response.data);
-    console.log(response.status);
-    // console.log(response.statusText);
-    // console.log(response.headers);
-    // console.log(response.config);
-     if (response.status  == 200) window.location.replace("/order"); // redirect;
-  });
+      // console.log(response.data);
+      //console.log(response.status);
+      // console.log(response.statusText);
+      // console.log(response.headers);
+      // console.log(response.config);
+      if (response.status  == 200) window.location.replace("/order"); // redirect;
+      });
       
 
     }
