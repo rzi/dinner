@@ -33,18 +33,18 @@
           <tr>
           <td align="right">Nazwa produktu:</td>
           <td>
-              <input type="text" name="z24_nazwa" value="Opłata za rezerwację NR: 04/234/A3953">
+              <input type="text" id = "z24_nazwa" name="z24_nazwa" value="Opłata za rezerwację NR: 04/234/A3953">
               </td>
               </tr>
               <tr>
               <td align="right">Dodatkowy opis:</td>
               <td>
-              <textarea name="z24_opis" style="width:250px">Dodatkowe informacje...</textarea>
+              <textarea id="z24_opis" name="z24_opis" style="width:250px">Dodatkowe informacje...</textarea>
               </td>
               </tr>
               <tr>
               <td align="right">Do zapłaty:</td>
-              <td><input type="text" name="z24_kwota"></td><!--KWOTA W GROSZACH-->
+              <td><input type="text" id = "z24_kwota" name="z24_kwota"></td><!--KWOTA W GROSZACH-->
               </tr>
               </table>
               <input type="submit" value="zapłać z przelewy24.pl">
@@ -55,4 +55,12 @@
 
     
   </body>
+  <script>
+    var pay = "<%- payment.order[payment.order.length -2] %>";
+    var name = "<%-payment.restoName%>";
+    var order = "<%-payment.order%>";
+    document.getElementById('z24_kwota').value = pay; 
+    document.getElementById('z24_nazwa').value = name; 
+    document.getElementById('z24_opis').value = order; 
+  </script>
 </html>
