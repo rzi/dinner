@@ -95,11 +95,12 @@
       <input
         style="margin: auto; display: block"
         type="button"
-        value="Zamów"
+        value="Zamów i zapłać"
         onclick="btnOrder()"
       />
     </div>
     <script src="/public/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       // order & pay
       var orderToPay = new Object();
@@ -149,6 +150,18 @@
         orderToPay.order = myOrder;
         console.log(` orderToPay ${JSON.stringify(orderToPay)}`);
         alert(`Zamówiono ${JSON.stringify(orderToPay)}`);
+        //const json = JSON.stringify({ answer: 42 });
+        const res = axios
+          .post("payment", orderToPay, {
+            headers: {
+              // Overwrite Axios's automatically set Content-Type
+              "Content-Type": "application/json",
+            },
+          })
+          .then(function (response) {
+            console.log(` status : ${response.status}`);
+            if (response.status == 200) window.location.replace("/payment"); // redirect;
+          });
 
         if (document.getElementById("name").innerHTML == "") {
           alert("musisz się zalogować");
