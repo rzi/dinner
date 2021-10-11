@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <%- include('../views/head.ejs'); %>
+    <title>Dinner</title>
+  </head>
+  <body>
+    <div
+      style="
+        color: white;
+        display: flex;
+        justify-content: end;
+        text-align: center;
+      "
+    >
+      <p>Witaj <span id="name"><%= name %></span></p>
+      <% var suma=0;%>
+      <span> <%- include('../views/hamburger.ejs'); %> </span>
+    </div>
+    <div >
+      <h2 style="color: white; text-align: center">
+        Płatność potwierdzona <a href="/">przejdź do strony głównej</a>
+      </h2>
+      <br>
+    
+
+    <script src="/public/main.js"></script>
+<script>
+    
+</script>
+    
+  </body>
+</html>

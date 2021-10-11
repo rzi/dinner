@@ -18,7 +18,7 @@ var resto = require("./routes/resto");
 var getname = require("./routes/getname");
 var order = require("./routes/order");
 var payment = require("./routes/payment");
-
+var payConfirmed = require("./routes/payConfirmed");
 var app = express();
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 console.log("dirname " + __dirname);
@@ -53,6 +53,7 @@ app.use("/resto", resto);
 app.use("/getname", getname);
 app.use("/order", order);
 app.use("/payment", payment);
+app.use("/payConfirmed", payConfirmed);
 
 const connection = mysql.createConnection({
   host: "rzi.cba.pl",
